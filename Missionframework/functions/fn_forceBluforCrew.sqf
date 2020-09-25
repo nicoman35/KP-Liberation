@@ -17,22 +17,20 @@
         Function reached the end [BOOL]
 */
 
-// params [ "_veh", "_crew"];
-params [ "_veh", "_crew", "_side", "_behaviour"];
+params [ "_veh", "_crew"];
 
 if (isNull _veh) exitWith {["Null object given"] call BIS_fnc_error; false};
-
 
 // UAV units can only have AI units. Besides, the lower routine WILL not work for UAVs. The driver will not be able to be moved in for whatever reason.
 if (unitIsUAV _veh) exitWith {
 	createVehicleCrew _veh;
 	(group ((crew _veh) select 0)) setBehaviour "SAFE";
 	true
-    };
+};
 
 // If we have a crew given with sored roles and classes, rebuild and reassign crew to the vehicle
 private _grp = createGroup [GRLIB_side_friendly, true];
-    {
+{
 	private _class = _x select 0;
 	private _member = _grp createUnit [_class, getPos _veh, [], 0, "FORM"];
 	_member addMPEventHandler ["MPKilled", {_this spawn kill_manager}];
