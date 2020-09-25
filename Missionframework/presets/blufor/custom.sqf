@@ -73,6 +73,7 @@ infantry_units = [
     ["B_ghillie_ard_F",70,5,0],                                         // Sniper (Arid)
     ["B_ghillie_lsh_F",70,5,0],                                         // Sniper (Lush)
     ["B_ghillie_sard_F",70,5,0],                                        // Sniper (Semi-Arid)
+    ["NIC_Sniper_M107",80,10,0],										// Sniper (Semi-Arid), equipped with an M107 and plenty of ammo
     ["B_spotter_F",20,0,0],                                             // Spotter
     ["B_crew_F",10,0,0],                                                // Crewman
     ["B_soldier_PG_F",20,0,0],                                          // Para Trooper
@@ -309,7 +310,7 @@ support_vehicles = [
     [FOB_box_typename,300,500,0],
     [FOB_truck_typename,300,500,75],
     [KP_liberation_small_storage_building,0,0,0],
-    [KP_liberation_large_storage_building,0,0,0],
+    [KP_liberation_large_storage_building,50,0,0],
     [KP_liberation_recycle_building,250,0,0],
     [KP_liberation_air_vehicle_building,1000,0,0],
     [KP_liberation_heli_slot_building,250,0,0],
@@ -317,7 +318,8 @@ support_vehicles = [
     ["ACE_medicalSupplyCrate_advanced",50,0,0],
     ["ACE_Box_82mm_Mo_HE",50,40,0],
     ["ACE_Box_82mm_Mo_Smoke",50,10,0],
-    ["ACE_Box_82mm_Mo_Illum",50,10,0],
+	["ACE_Box_82mm_Mo_Illum",50,10,0],
+	["ACE_Box_82mm_Mo_Combo",100,80,0],
     ["ACE_Wheel",10,0,0],
     ["ACE_Track",10,0,0],
     ["USAF_missileCart_W_AGM114",50,150,0],                             // Missile Cart (AGM-114)

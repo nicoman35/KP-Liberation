@@ -321,7 +321,7 @@ if (!isNil "_saveData") then {
     private _object = objNull;
     {
         // Fetch data of saved object
-		_x params ["_class", "_pos", "_vecDir", "_vecUp", ["_crew", []], "_cargo"];
+        _x params ["_class", "_pos", "_vecDir", "_vecUp", ["_hasCrew", false]];
 
         // This will be removed if we reach a 0.96.7 due to more released Arma 3 DLCs until we finish 0.97.0
         if !(((_saveData select 0) select 0) isEqualType 0) then {
@@ -372,32 +372,9 @@ if (!isNil "_saveData") then {
             // Determine if cargo should be cleared
             [_object] call KPLIB_fnc_clearCargo;
 
-			// If we have cargo saved, restore
-            if (!KP_liberation_clear_cargo && (count _cargo > 0)) then {
-				clearWeaponCargoGlobal _object;
-                clearMagazineCargoGlobal _object;
-                clearBackpackCargoGlobal _object;
-                clearItemCargoGlobal _object;
-				private _items = _cargo select 0;
-				{
-					_object addItemCargoGlobal [_x, ((_items select 1) select ((_items select 0) find _x))];
-				} count (_items select 0);
-				private _magazines = _cargo select 1;
-				{
-					_object addMagazineCargoGlobal [_x, ((_magazines select 1) select ((_magazines select 0) find _x))];
-				} count (_magazines select 0);
-				private _weapons = _cargo select 2;
-				{
-					_object addWeaponCargoGlobal [_x, ((_weapons select 1) select ((_weapons select 0) find _x))];
-				} count (_weapons select 0);
-				private _backpacks = _cargo select 3;
-				{
-					_object addBackpackCargoGlobal [_x, ((_backpacks select 1) select ((_backpacks select 0) find _x))];
-				} count (_backpacks select 0);
-            };
             // Add blufor crew, if it had crew or is a UAV
-			if ((unitIsUAV _object) || count _crew > 0) then {
-                [_object, _crew] call KPLIB_fnc_forceBluforCrew;
+            if ((unitIsUAV _object) || _hascrew) then {
+                [_object] call KPLIB_fnc_forceBluforCrew;
             };
         };
     } forEach _objectsToSave;

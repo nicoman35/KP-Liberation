@@ -207,7 +207,7 @@ support_vehicles = [
     [FOB_box_typename,300,500,0],
     [FOB_truck_typename,300,500,75],
     [KP_liberation_small_storage_building,0,0,0],
-    [KP_liberation_large_storage_building,0,0,0],
+    [KP_liberation_large_storage_building,50,0,0],
     [KP_liberation_recycle_building,250,0,0],
     [KP_liberation_air_vehicle_building,1000,0,0],
     [KP_liberation_heli_slot_building,250,0,0],
@@ -216,6 +216,7 @@ support_vehicles = [
     ["ACE_Box_82mm_Mo_HE",50,40,0],
     ["ACE_Box_82mm_Mo_Smoke",50,10,0],
     ["ACE_Box_82mm_Mo_Illum",50,10,0],
+	["ACE_Box_82mm_Mo_Combo",100,80,0],
     ["ACE_Wheel",10,0,0],
     ["ACE_Track",10,0,0],
     ["CUP_B_TowingTractor_GB",50,0,25],                                     // Towing Tractor

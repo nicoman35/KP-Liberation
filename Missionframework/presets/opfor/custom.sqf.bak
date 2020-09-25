@@ -72,8 +72,7 @@ opfor_vehicles = [
     "O_MBT_02_cannon_F",                                                // T-100 Varsuk
     "O_MBT_02_cannon_F",                                                // T-100 Varsuk
     "O_MBT_04_cannon_F",                                                // T-140 Angara
-	"O_MBT_04_command_F",												// T-140K Angara
-	"HTNK"																// Mammoth
+    "O_MBT_04_command_F"                                                // T-140K Angara
 ];
 
 // All enemy vehicles that can spawn as sector defenders and patrols but at a lower enemy combat readiness (aggression levels).
@@ -101,7 +100,6 @@ opfor_battlegroup_vehicles = [
     "O_MBT_02_cannon_F",                                                // T-100 Varsuk
     "O_MBT_04_cannon_F",                                                // T-140 Angara
     "O_MBT_04_command_F",                                               // T-140K Angara
-	"HTNK",																// Mammoth
     "O_Heli_Light_02_dynamicLoadout_F",                                 // Po-30 Orca (Armed)
     "O_Heli_Light_02_dynamicLoadout_F",                                 // Po-30 Orca (Armed)
     "O_Heli_Transport_04_bench_F",                                      // Mi-290 Taru (Bench)
@@ -141,11 +139,4 @@ opfor_choppers = [
 opfor_air = [
     "O_Plane_CAS_02_dynamicLoadout_F",                                  // To-199 Neophron (CAS)
     "O_Plane_Fighter_02_F"                                              // To-201 Shikra
-];
-
-// Enemy AA turrets that will be spawned in the backland
-opfor_AA_Turrets = [
-	"B_SAM_System_01_F", 
-	"B_SAM_System_02_F", 
-	["O_SAM_System_04_F", "O_Radar_System_02_F"]
 ];

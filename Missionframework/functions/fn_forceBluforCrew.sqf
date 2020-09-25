@@ -11,39 +11,36 @@
 
     Parameter(s):
         _veh - Vehicle to add the blufor crew to [OBJECT, defaults to objNull]
+		_crew - vehicle's crew
 
     Returns:
         Function reached the end [BOOL]
 */
 
-params [
-    ["_veh", objNull, [objNull]]
-];
+// params [ "_veh", "_crew"];
+params [ "_veh", "_crew", "_side", "_behaviour"];
 
 if (isNull _veh) exitWith {["Null object given"] call BIS_fnc_error; false};
 
-// Create regular config crew
-private _grp = createVehicleCrew _veh;
 
-// If the config crew isn't the correct side, replace it with the crew classnames from the preset
-if ((side _grp) != GRLIB_side_friendly) then {
-    {deleteVehicle _x} forEach (units _grp);
-
-    _grp = createGroup [GRLIB_side_friendly, true];
-    while {count units _grp < 3} do {
-        [crewman_classname, getPos _veh, _grp] call KPLIB_fnc_createManagedUnit;
+// UAV units can only have AI units. Besides, the lower routine WILL not work for UAVs. The driver will not be able to be moved in for whatever reason.
+if (unitIsUAV _veh) exitWith {
+	createVehicleCrew _veh;
+	(group ((crew _veh) select 0)) setBehaviour "SAFE";
+	true
     };
-    ((units _grp) select 0) moveInDriver _veh;
-    ((units _grp) select 1) moveInGunner _veh;
-    ((units _grp) select 2) moveInCommander _veh;
 
-    // Delete crew which isn't in the vehicle due to e.g. no commander seat
+// If we have a crew given with sored roles and classes, rebuild and reassign crew to the vehicle
+private _grp = createGroup [GRLIB_side_friendly, true];
     {
-        if (isNull objectParent _x) then {deleteVehicle _x};
-    } forEach (units _grp);
-};
-
-// Set the crew to safe behaviour
-_grp setBehaviour "SAFE";
+	private _class = _x select 0;
+	private _member = _grp createUnit [_class, getPos _veh, [], 0, "FORM"];
+	_member addMPEventHandler ["MPKilled", {_this spawn kill_manager}];
+	private _role = _x select 1;
+	if (_role select 0 == "driver") then {_member moveInDriver _veh};
+	if (_role select 0 == "cargo") then {_member moveInCargo _veh};
+	if (_role select 0 == "Turret") then {_member moveinturret [_veh, _role select 1]};
+} forEach _crew;
+(group ((crew _veh) select 0)) setBehaviour "SAFE";
 
 true

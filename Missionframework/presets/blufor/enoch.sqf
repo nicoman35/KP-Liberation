@@ -216,7 +216,7 @@ support_vehicles = [
     [FOB_box_typename,300,500,0],
     [FOB_truck_typename,300,500,75],
     [KP_liberation_small_storage_building,0,0,0],
-    [KP_liberation_large_storage_building,0,0,0],
+    [KP_liberation_large_storage_building,50,0,0],
     [KP_liberation_recycle_building,200,100,0],
     [KP_liberation_air_vehicle_building,1000,0,0],
     [KP_liberation_heli_slot_building,250,0,0],
