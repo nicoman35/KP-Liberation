@@ -23,6 +23,8 @@ private _allObjects = [];
 private _allStorages = [];
 private _allMines = [];
 private _allCrates = [];
+private _crew = [];
+private _cargo = [];
 
 // Get all blufor groups
 private _allBlueGroups = allGroups select {
@@ -69,20 +71,25 @@ private ["_fobPos", "_fobObjects", "_grpUnits", "_fobMines"];
 } forEach GRLIB_all_fobs;
 
 // Save all fetched objects
-private ["_savedPos", "_savedVecDir", "_savedVecUp", "_class", "_hasCrew"];
+private ["_savedPos", "_savedVecDir", "_savedVecUp", "_class", "_crew", "_cargo"];
 {
     // Position data
     _savedPos = getPosWorld _x;
     _savedVecDir = vectorDirVisual _x;
     _savedVecUp = vectorUpVisual _x;
     _class = typeOf _x;
-    _hasCrew = false;
+	_crew = [];
+	_cargo = [];
 
     // Determine if vehicle is crewed
-    if ((toLower _class) in KPLIB_b_allVeh_classes) then {
-        if (({!isPlayer _x} count (crew _x) ) > 0) then {
-            _hasCrew = true;
+	if (({!isPlayer _x} count (crew _x) ) > 0 && !(unitIsUAV _x)) then {		
+		{
+			if (alive _x) then {_crew pushBack [typeOf _x, assignedVehicleRole _x]};
+		} forEach (crew _x);
         };
+	// Build inventory array, if cargo in not to be cleared
+	if (!KP_liberation_clear_cargo) then {
+		_cargo = [getItemCargo _x, getMagazineCargo _x, getWeaponCargo _x, getBackpackCargo _x];
     };
 
     // Only save player side, seized or captured objects
@@ -90,7 +97,7 @@ private ["_savedPos", "_savedVecDir", "_savedVecUp", "_class", "_hasCrew"];
         (!(_class in civilian_vehicles) || {_x getVariable ["KPLIB_seized", false]}) &&
         (!((toLower _class) in KPLIB_o_allVeh_classes) || {_x getVariable ["KPLIB_captured", false]})
     ) then {
-        _objectsToSave pushBack [_class, _savedPos, _savedVecDir, _savedVecUp, _hasCrew];
+		_objectsToSave pushBack [_class, _savedpos, _savedvecdir, _savedvecup, _crew, _cargo];
     };
 } forEach _allObjects;
 

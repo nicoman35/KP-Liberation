@@ -321,7 +321,7 @@ if (!isNil "_saveData") then {
     private _object = objNull;
     {
         // Fetch data of saved object
-		_x params ["_class", "_pos", "_vecDir", "_vecUp", ["_crew", []], "_cargo"];
+		_x params ["_class", "_pos", "_vecDir", "_vecUp", ["_crew", []], ["_cargo", []]];
 
         // This will be removed if we reach a 0.96.7 due to more released Arma 3 DLCs until we finish 0.97.0
         if !(((_saveData select 0) select 0) isEqualType 0) then {
@@ -395,10 +395,13 @@ if (!isNil "_saveData") then {
 					_object addBackpackCargoGlobal [_x, ((_backpacks select 1) select ((_backpacks select 0) find _x))];
 				} count (_backpacks select 0);
             };
-            // Add blufor crew, if it had crew or is a UAV
-			if ((unitIsUAV _object) || count _crew > 0) then {
-                [_object, _crew] call KPLIB_fnc_forceBluforCrew;
-            };
+
+			// Add blufor crew, if it had crew or is a UAV		
+			if (typeName _crew == "ARRAY") then {
+				if ((unitIsUAV _object) || count _crew > 0) then {
+						[_object, _crew] call KPLIB_fnc_forceBluforCrew;
+				};
+			};
         };
     } forEach _objectsToSave;
 
