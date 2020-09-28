@@ -5,10 +5,11 @@ waitUntil {!isNil "GRLIB_vehicle_to_military_base_links"};
 waitUntil {!isNil "blufor_sectors"};
 waitUntil {save_is_loaded};
 
-if (GRLIB_difficulty_modifier == 0) exitWith {};											// no AA turrets on easyest difficulty level
+if (GRLIB_difficulty_modifier == 0) exitWith {};											// no AA turrets on easiest difficulty level
+if (isNil "opfor_AA_Turrets") exitWith {};													// leave, if there are no AA turrets defined in currently played preset
 private _AA_Killed_Turrets = 0;																// counter of killed AA turrets
 if (isNil "AA_used_positions") then {AA_used_positions = []};								// define array containing all currently used positions
-if (isNil "AA_backland_turrets") then {AA_backland_turrets = []};							// define array containing all turrets corresponding to a used positon
+if (isNil "AA_backland_turrets") then {AA_backland_turrets = []};							// define array containing all turrets corresponding to a used position
 
 // diag_log formatText ["%1%2", time, "s  (AA_turret_manager) started!"]; 
 
@@ -63,7 +64,7 @@ while {GRLIB_endgame == 0} do {
 	if (combat_readiness > 0 && _maxAAnumber > 0) then {
 		_maxAAnumber = _maxAAnumber * round (combat_readiness / 30);		
 		if (_maxAAnumber > 20) then {_maxAAnumber = 20};
-		if (_maxAAnumber > (count sectors_allSectors - count blufor_sectors)) then {_maxAAnumber = count sectors_allSectors - count blufor_sectors};	// maximum amount of AA turrets should not exeed number of opfor sectors
+		if (_maxAAnumber > (count sectors_allSectors - count blufor_sectors)) then {_maxAAnumber = count sectors_allSectors - count blufor_sectors};	// maximum amount of AA turrets should not exceed number of opfor sectors
 	};
 	
 	// diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (AA_turret_manager) GRLIB_difficulty_modifier: ", GRLIB_difficulty_modifier, ", combat_readiness: ", combat_readiness, ", number opfor sectors: ", count sectors_allSectors - count blufor_sectors, ", _maxAAnumber: ", _maxAAnumber]; 
