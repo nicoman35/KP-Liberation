@@ -28,7 +28,7 @@ if !(_spawn_marker isEqualTo "") then {
 
         // Adjust target size for infantry
         _target_size = 12 max (_target_size * 4);
-
+		
         // Create infantry groups with up to 8 units per squad
         private _grp = createGroup [GRLIB_side_enemy, true];
         for "_i" from 0 to (_target_size - 1) do {
@@ -38,8 +38,11 @@ if !(_spawn_marker isEqualTo "") then {
             };
             [selectRandom _infClasses, markerPos _spawn_marker, _grp] call KPLIB_fnc_createManagedUnit;
         };
-        [_grp] spawn battlegroup_ai;
+		// [_grp] spawn battlegroup_ai;
         _bg_groups pushBack _grp;
+		{
+           [_x] spawn battlegroup_ai;
+        } forEach _bg_groups;
     } else {
         private _vehicle_pool = [opfor_battlegroup_vehicles, opfor_battlegroup_vehicles_low_intensity] select (combat_readiness < 50);
 
