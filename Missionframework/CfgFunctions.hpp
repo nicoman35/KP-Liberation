@@ -63,11 +63,14 @@ class KPLIB {
         class handlePlacedZeusObject    {};
         class hasPermission             {};
         class initSectors               {};
+		class insideBuilding			{};
+		class insideRock				{};
         class isBigtownActive           {};
         class isClassUAV                {};
         class isRadio                   {};
         class log                       {};
-        class potatoScan                {};
+		class nearestBuildingPosition	{};
+		class potatoScan                {};
         class protectObject             {};
         class secondsToTimer            {};
         class setDiscordState           {};
