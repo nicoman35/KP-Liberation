@@ -83,9 +83,9 @@ private ["_savedPos", "_savedVecDir", "_savedVecUp", "_class", "_crew", "_cargo"
 
     // Determine if vehicle is crewed
 	if (({!isPlayer _x} count (crew _x) ) > 0 && !(unitIsUAV _x)) then {		
-		{
-			if (alive _x) then {_crew pushBack [typeOf _x, assignedVehicleRole _x]};
-		} forEach (crew _x);
+			{
+				if (alive _x) then {_crew pushBack [typeOf _x, assignedVehicleRole _x]};
+			} forEach (crew _x);
         };
 	// Build inventory array, if cargo in not to be cleared
 	if (!KP_liberation_clear_cargo) then {

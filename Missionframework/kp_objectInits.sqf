@@ -126,6 +126,12 @@ KPLIB_objectInits = [
                 _this disableAI "AUTOCOMBAT";
             };
             _this allowFleeing 0;
+			if (typeOf _this == "NIC_Sniper_M107") then {
+				private _skills = ["aimingAccuracy", "aimingShake", "aimingSpeed", "endurance", "spotDistance", "spotTime", "reloadSpeed"];
+				{	
+					_this setSkill [_x, ((_this skill _x) + 0.3)];
+				} foreach _skills;
+			};
         },
         true
     ]

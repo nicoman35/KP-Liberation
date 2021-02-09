@@ -51,7 +51,7 @@ while { true } do {
         if ( manned ) then {
             _grp = createGroup GRLIB_side_friendly;
         };
-        _classname createUnit [_pos, _grp,"this addMPEventHandler [""MPKilled"", {_this spawn kill_manager}]", 0.5, "private"];
+		_classname createUnit [_pos, _grp,"this addMPEventHandler [""MPKilled"", {_this spawn kill_manager}];[this] call KPLIB_fnc_addObjectInit;", 0.5, "private"];
         build_confirmed = 0;
     } else {
         if ( buildtype == 8 ) then {
