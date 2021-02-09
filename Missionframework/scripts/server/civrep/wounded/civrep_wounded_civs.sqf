@@ -10,55 +10,23 @@ private _civs = [];
 private _markers = [];
 
 for "_i" from 1 to _count do {
-    // private _pos = (markerPos _sector) getPos [(50 + (random 150)), (random 360)];
-	// while {(surfaceIsWater _pos) || ((count ([_pos, 30] call KPLIB_fnc_getNearbyPlayers)) > 0)} do {
-        // _pos = (markerPos _sector) getPos [(50 + (random 200)), (random 360)];
-    // };
-	
 	private _pos = [markerPos _sector, 50, (150 + (random 50)), 5] call BIS_fnc_findSafePos;	// [center, minDist, maxDist, objDist]
 	while {(count ([_pos, 30] call KPLIB_fnc_getNearbyPlayers)) > 0} do {
         _pos = [markerPos _sector, 20, (200 + (random 50)), 3] call BIS_fnc_findSafePos;
     };
 	_pos append [0.5];
 
-	// if (markerPos _sector distance _pos < 30) then {
-		// _pos = (markerPos _sector) getPos [(50 + (random 150)), (random 360)];   				// random position in any direction 50 to 200 m away from center of sector marker position
-	// };
-	
 	if ([_pos] call KPLIB_fnc_insideRock) then {
-		diag_log formatText ["%1%2", time, "s  (civrep_wounded_civs)		_pos is inside a Rock!"];
 		while {[_pos] call KPLIB_fnc_insideRock} do {
-			// diag_log formatText ["%1%2%3%4%5%6%7", time, "s   _pos: ", _pos];
 			_pos set [2, (_pos select 2) + 1];
 		};
 		_pos set [2, (_pos select 2) + 1];
-		diag_log formatText ["%1%2%3", time, "s  (civrep_wounded_civs)		position ontop rock: ", _pos];
-		// private _dummy = "Sign_Arrow_Blue_F" createVehicle _pos;
-		// _dummy enableSimulation false;
-		// _dummy allowDamage false;
-		// _dummy setPosWorld _pos;
 	};
 
 	private _building = [_pos] call KPLIB_fnc_insideBuilding;
-	diag_log formatText ["%1%2%3", time, "s  (civrep_wounded_civs)	 _building: ", _building];
 	if (!isNull _building) then {
-		// diag_log formatText ["%1%2%3%4%5%6%7", time, "s   _building: ", _building];
 		_pos = [_pos, _building] call KPLIB_fnc_nearestBuildingPosition;
-		diag_log formatText ["%1%2%3", time, "s  (civrep_wounded_civs)		building position: ", _pos];
-		// diag_log formatText ["%1%2%3%4%5%6%7", time, "s   _nearest _pos inside: ", _pos];
-		// private _dummy = "Sign_Arrow_Green_F" createVehicle _pos;
-		// _dummy enableSimulation false;
-		// _dummy allowDamage false;
-		// _dummy setPos _pos;
-		// diag_log formatText ["%1%2%3%4%5%6%7", time, "s   dummy pos: ", getpos _dummy];
 	};
-		
-	// private _dummy = "Sign_Arrow_Green_F" createVehicle _pos;
-	// _dummy enableSimulation false;
-	// _dummy allowDamage false;
-	// _dummy setPos _pos;
-	// diag_log formatText ["%1%2%3%4%5%6%7", time, "s   dummy pos: ", getpos _dummy];
-		
     private _civ = [selectRandom civilians, _pos, _grp] call KPLIB_fnc_createManagedUnit;
     _civ setDir (random 360);
     {_civ disableAI _x} forEach ["ANIM", "TARGET", "AUTOTARGET", "MOVE"];

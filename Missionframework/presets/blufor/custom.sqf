@@ -73,7 +73,7 @@ infantry_units = [
     ["B_ghillie_ard_F",70,5,0],                                         // Sniper (Arid)
     ["B_ghillie_lsh_F",70,5,0],                                         // Sniper (Lush)
     ["B_ghillie_sard_F",70,5,0],                                        // Sniper (Semi-Arid)
-    ["NIC_Sniper_M107",80,10,0],										// Sniper (Semi-Arid), equipped with an M107 and plenty of ammo
+    ["NIC_Sniper_M107",100,20,0],										// Sniper (Semi-Arid), equipped with an M107 and plenty of ammo, expert sniper
     ["B_spotter_F",20,0,0],                                             // Spotter
     ["B_crew_F",10,0,0],                                                // Crewman
     ["B_soldier_PG_F",20,0,0],                                          // Para Trooper
