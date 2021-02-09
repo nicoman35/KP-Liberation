@@ -67,6 +67,10 @@ if (GRLIB_endgame == 0) then {
         }
         && {[] call KPLIB_fnc_getOpforCap < GRLIB_battlegroup_cap}
     ) then {
-        [_liberated_sector, (random 100) < 45] spawn spawn_battlegroup;
+        // [_liberated_sector, (random 100) < 45] spawn spawn_battlegroup;
+		private _rnd = random 100;
+		private _infProbability = 45 - (combat_readiness / 2);
+		[_liberated_sector, _rnd < _infProbability] spawn spawn_battlegroup;
+		diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (sector_liberated) _rnd: ", _rnd, ", _infProbability: ", _infProbability, ", combat_readiness: ", combat_readiness]; 
     };
 };
