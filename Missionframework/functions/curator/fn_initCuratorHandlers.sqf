@@ -48,24 +48,32 @@ if (isServer) then {
         private _zeus = _group createUnit ["ModuleCurator_F", [-7580, -7580, 0], [], 0, "NONE"];
         missionNamespace setVariable [ZEUSVAR(_uid), _zeus];
 
-        if (_limited) then {
-            _zeus setVariable ["Addons", 0, true];
-            _zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
-
-            _zeus setCuratorCoef ["Place", -1e8];
-            _zeus setCuratorCoef ["Edit", -1e8];
-            _zeus setCuratorCoef ["Destroy", -1e8];
-            _zeus setCuratorCoef ["Delete", 0];
-        } else {
-            _zeus setVariable ["Addons", 3, true];
-            _zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
-
-            _zeus setCuratorCoef ["Place", 0];
-            _zeus setCuratorCoef ["Delete", 0];
-
-            removeAllCuratorAddons _zeus;
-        };
-
+        // if (_limited) then {
+            // _zeus setVariable ["Addons", 0, true];
+            // _zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
+            // _zeus setCuratorCoef ["Place", -1e8];
+            // _zeus setCuratorCoef ["Edit", -1e8];
+            // _zeus setCuratorCoef ["Destroy", -1e8];
+            // _zeus setCuratorCoef ["Delete", 0];
+        // } else {
+            // _zeus setVariable ["Addons", 3, true];
+            // _zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
+            // _zeus setCuratorCoef ["Place", 0];
+            // _zeus setCuratorCoef ["Delete", 0];
+            // removeAllCuratorAddons _zeus;
+        // };
+		if (_limited) then {
+			_zeus setCuratorCoef ["Place", -1e8];
+			_zeus setCuratorCoef ["Edit", -1e8];
+			_zeus setCuratorCoef ["Destroy", -1e8];
+		} else {
+			_zeus setCuratorCoef ["Place", 0];
+			removeAllCuratorAddons _zeus;
+		};
+		_zeus setVariable ["Addons", 3, true];
+		_zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
+		_zeus setCuratorCoef ["Delete", 0];
+		
         _zeus setVariable ["KPLIB_limited", _limited];
 
         _player assignCurator _zeus;
