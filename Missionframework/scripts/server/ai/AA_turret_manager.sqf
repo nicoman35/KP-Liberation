@@ -20,6 +20,7 @@ while {GRLIB_endgame == 0} do {
     if (combat_readiness >= 90) then {_sleeptime = _sleeptime * 0.75};
     if (combat_readiness >= 95) then {_sleeptime = _sleeptime * 0.75};
 	
+	diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (AA_turret_manager) getOpforFactor: ", [] call KPLIB_fnc_getOpforFactor, ", combat_readiness: ", combat_readiness, ", GRLIB_csat_aggressivity: ", GRLIB_csat_aggressivity, ", _sleeptime: ", _sleeptime];
 	sleep _sleeptime;
 	// diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (AA_turret_manager) getOpforFactor: ", [] call KPLIB_fnc_getOpforFactor, ", combat_readiness: ", combat_readiness, ", GRLIB_csat_aggressivity: ", GRLIB_csat_aggressivity, ", _sleeptime: ", _sleeptime];   
 	// sleep 60;
@@ -47,12 +48,12 @@ while {GRLIB_endgame == 0} do {
 		};
 	} forEach AA_backland_turrets;
 	
-	// diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (AA_turret_manager) AA_backland_turrets after clearing: ", AA_backland_turrets, ", AA_used_positions: ", AA_used_positions, ", _AA_Killed_Turrets: ", _AA_Killed_Turrets]; 
+	diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (AA_turret_manager) AA_backland_turrets after clearing: ", AA_backland_turrets, ", AA_used_positions: ", AA_used_positions, ", _AA_Killed_Turrets: ", _AA_Killed_Turrets]; 
 	
 	// If AA turrets were destroyed, add a 'punishment' time for the enemy. This extra time is ment to be a dampening of the production of AA turrets
 	if (_AA_Killed_Turrets > 0) then {
 		_sleeptime = _sleeptime * _AA_Killed_Turrets;
-		// diag_log formatText ["%1%2%3", time, "s  (AA_turret_manager) extra sleeptime on account of killed turrets: ", _sleeptime]; 
+		diag_log formatText ["%1%2%3", time, "s  (AA_turret_manager) extra sleeptime on account of killed turrets: ", _sleeptime]; 
 		// sleep 10;
 		sleep _sleeptime;																	// killing AA turrets 'damps' placement of further turrets
 		_AA_Killed_Turrets = 0;																// reset kill counter after performing 'damp' sleep
