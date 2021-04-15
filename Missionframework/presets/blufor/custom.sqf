@@ -186,6 +186,7 @@ air_vehicles = [
     ["B_UAV_02_dynamicLoadout_F",400,400,200],                          // MQ-4A Greyhawk
     ["B_T_UAV_03_dynamicLoadout_F",450,500,250],                        // MQ-12 Falcon
     ["B_UAV_05_F",500,500,200],                                         // UCAV Sentinel
+	["B_UAV_05_F_Enhanced",700,600,200],                                // UCAV Sentinel Enhanced
     ["USAF_RQ4A",500,0,200],                                            // RQ-4A Global Hawk
     ["USAF_MQ9",500,750,200],                                           // MQ-9 Reaper
     ["I_Plane_Fighter_03_dynamicLoadout_F",500,400,350],                // A-143 Buzzard
@@ -454,6 +455,7 @@ elite_vehicles = [
     "B_UAV_02_dynamicLoadout_F",                                        // MQ-4A Greyhawk
     "B_T_UAV_03_dynamicLoadout_F",                                      // MQ-12 Falcon
     "B_UAV_05_F",                                                       // UCAV Sentinel
+	"B_UAV_05_F_Enhanced",                                              // UCAV Sentinel Enhanced
     "B_Plane_CAS_01_dynamicLoadout_F",                                  // A-164 Wipeout (CAS)
     "I_Plane_Fighter_04_F",                                             // A-149 Gryphon
     "RHS_A10",                                                          // A-10A (CAS)
