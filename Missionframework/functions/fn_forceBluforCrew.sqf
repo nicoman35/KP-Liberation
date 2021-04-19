@@ -17,7 +17,7 @@
         Function reached the end [BOOL]
 */
 
-params [ "_veh", "_crew"];
+params [ "_veh", ["_crew", []]];
 
 if (isNull _veh) exitWith {["Null object given"] call BIS_fnc_error; false};
 

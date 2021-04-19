@@ -75,7 +75,6 @@ if (isServer) then {
 		_zeus setCuratorCoef ["Delete", 0];
 		
         _zeus setVariable ["KPLIB_limited", _limited];
-
         _player assignCurator _zeus;
 
         [true, "KPLIB_zeusAssigned", [_zeus, _limited]] remoteExecCall ["BIS_fnc_callScriptedEventHandler", _player];
