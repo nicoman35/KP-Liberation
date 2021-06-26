@@ -172,119 +172,71 @@ if (!isNil "_saveData") then {
         _saveData = parseSimpleArray _saveData;
     };
 
-    // if (((_saveData select 0) select 0) isEqualType 0) then {
-        [format ["Save data from version: %1", (_saveData select 0) joinstring "."], "SAVE"] call KPLIB_fnc_log;
+    [format ["Save data from version: %1", (_saveData select 0) joinstring "."], "SAVE"] call KPLIB_fnc_log;
 
-        _dateTime                                   = _saveData select  1;
-        _objectsToSave                              = _saveData select  2;
-        _resourceStorages                           = _saveData select  3;
-        _stats                                      = _saveData select  4;
-        _weights                                    = _saveData select  5;
-        _aiGroups                                   = _saveData select  6;
-        blufor_sectors                              = _saveData select  7;
-        combat_readiness                            = _saveData select  8;
-        GRLIB_all_fobs                              = _saveData select  9;
-        GRLIB_permissions                           = _saveData select 10;
-        GRLIB_vehicle_to_military_base_links        = _saveData select 11;
-        KP_liberation_civ_rep                       = _saveData select 12;
-        KP_liberation_clearances                    = _saveData select 13;
-        KP_liberation_guerilla_strength             = _saveData select 14;
-        KP_liberation_logistics                     = _saveData select 15;
-        KP_liberation_production                    = _saveData select 16;
-        KP_liberation_production_markers            = _saveData select 17;
-        resources_intel                             = _saveData select 18;
-        _allMines                                   = _saveData param [19, []];
-        _allCrates                                  = _saveData param [20, []];
-        KPLIB_sectorTowers                          = _saveData param [21, []];
+    _dateTime                                   = _saveData select  1;
+    _objectsToSave                              = _saveData select  2;
+    _resourceStorages                           = _saveData select  3;
+    _stats                                      = _saveData select  4;
+    _weights                                    = _saveData select  5;
+    _aiGroups                                   = _saveData select  6;
+    blufor_sectors                              = _saveData select  7;
+    combat_readiness                            = _saveData select  8;
+    GRLIB_all_fobs                              = _saveData select  9;
+    GRLIB_permissions                           = _saveData select 10;
+    GRLIB_vehicle_to_military_base_links        = _saveData select 11;
+    KP_liberation_civ_rep                       = _saveData select 12;
+    KP_liberation_clearances                    = _saveData select 13;
+    KP_liberation_guerilla_strength             = _saveData select 14;
+    KP_liberation_logistics                     = _saveData select 15;
+    KP_liberation_production                    = _saveData select 16;
+    KP_liberation_production_markers            = _saveData select 17;
+    resources_intel                             = _saveData select 18;
+    _allMines                                   = _saveData param [19, []];
+    _allCrates                                  = _saveData param [20, []];
+    KPLIB_sectorTowers                          = _saveData param [21, []];
+    KPLIB_AA_used_positions						= _saveData param [22, []];
+    KPLIB_AA_opfor_turret_types					= _saveData param [23, []];
 
-        stats_ammo_produced                         = _stats select  0;
-        stats_ammo_spent                            = _stats select  1;
-        stats_blufor_soldiers_killed                = _stats select  2;
-        stats_blufor_soldiers_recruited             = _stats select  3;
-        stats_blufor_teamkills                      = _stats select  4;
-        stats_blufor_vehicles_built                 = _stats select  5;
-        stats_blufor_vehicles_killed                = _stats select  6;
-        stats_civilian_buildings_destroyed          = _stats select  7;
-        stats_civilian_vehicles_killed              = _stats select  8;
-        stats_civilian_vehicles_killed_by_players   = _stats select  9;
-        stats_civilian_vehicles_seized              = _stats select 10;
-        stats_civilians_healed                      = _stats select 11;
-        stats_civilians_killed                      = _stats select 12;
-        stats_civilians_killed_by_players           = _stats select 13;
-        stats_fobs_built                            = _stats select 14;
-        stats_fobs_lost                             = _stats select 15;
-        stats_fuel_produced                         = _stats select 16;
-        stats_fuel_spent                            = _stats select 17;
-        stats_hostile_battlegroups                  = _stats select 18;
-        stats_ieds_detonated                        = _stats select 19;
-        stats_opfor_killed_by_players               = _stats select 20;
-        stats_opfor_soldiers_killed                 = _stats select 21;
-        stats_opfor_vehicles_killed                 = _stats select 22;
-        stats_opfor_vehicles_killed_by_players      = _stats select 23;
-        stats_player_deaths                         = _stats select 24;
-        stats_playtime                              = _stats select 25;
-        stats_prisoners_captured                    = _stats select 26;
-        stats_readiness_earned                      = _stats select 27;
-        stats_reinforcements_called                 = _stats select 28;
-        stats_resistance_killed                     = _stats select 29;
-        stats_resistance_teamkills                  = _stats select 30;
-        stats_resistance_teamkills_by_players       = _stats select 31;
-        stats_secondary_objectives                  = _stats select 32;
-        stats_sectors_liberated                     = _stats select 33;
-        stats_sectors_lost                          = _stats select 34;
-        stats_spartan_respawns                      = _stats select 35;
-        stats_supplies_produced                     = _stats select 36;
-        stats_supplies_spent                        = _stats select 37;
-        stats_vehicles_recycled                     = _stats select 38;
-    // } else {
-        // // --- Compatibility for older save data ---
-        // ["Save data from version: pre 0.96.5", "SAVE"] call KPLIB_fnc_log;
-
-        // blufor_sectors                              = _saveData select  0;
-        // GRLIB_all_fobs                              = _saveData select  1;
-        // _objectsToSave                              = _saveData select  2;
-        // _dateTime                                   = _saveData select  3;
-        // combat_readiness                            = _saveData select  4;
-        // _resourceStorages                           = _saveData select  5;
-        // KP_liberation_production                    = _saveData select  6;
-        // KP_liberation_logistics                     = _saveData select  7;
-        // _stats                                      = _saveData select  8;
-        // _weights                                    = _saveData select  9;
-        // GRLIB_vehicle_to_military_base_links        = _saveData select 10;
-        // GRLIB_permissions                           = _saveData select 11;
-        // _aiGroups                                   = _saveData select 12;
-        // resources_intel                             = _saveData select 13;
-        // KP_liberation_civ_rep                       = _saveData select 15;
-        // KP_liberation_production_markers            = _saveData select 16;
-        // KP_liberation_guerilla_strength             = _saveData select 17;
-
-        // stats_opfor_soldiers_killed                 = _stats select  0;
-        // stats_opfor_killed_by_players               = _stats select  1;
-        // stats_blufor_soldiers_killed                = _stats select  2;
-        // stats_player_deaths                         = _stats select  3;
-        // stats_opfor_vehicles_killed                 = _stats select  4;
-        // stats_opfor_vehicles_killed_by_players      = _stats select  5;
-        // stats_blufor_vehicles_killed                = _stats select  6;
-        // stats_blufor_soldiers_recruited             = _stats select  7;
-        // stats_blufor_vehicles_built                 = _stats select  8;
-        // stats_civilians_killed                      = _stats select  9;
-        // stats_civilians_killed_by_players           = _stats select 10;
-        // stats_sectors_liberated                     = _stats select 11;
-        // stats_playtime                              = _stats select 12;
-        // stats_spartan_respawns                      = _stats select 13;
-        // stats_secondary_objectives                  = _stats select 14;
-        // stats_hostile_battlegroups                  = _stats select 15;
-        // stats_ieds_detonated                        = _stats select 16;
-        // stats_reinforcements_called                 = _stats select 19;
-        // stats_prisoners_captured                    = _stats select 20;
-        // stats_blufor_teamkills                      = _stats select 21;
-        // stats_vehicles_recycled                     = _stats select 22;
-        // stats_ammo_spent                            = _stats select 23;
-        // stats_sectors_lost                          = _stats select 24;
-        // stats_fobs_built                            = _stats select 25;
-        // stats_fobs_lost                             = _stats select 26;
-        // stats_readiness_earned                      = _stats select 27;
-    // };
+    stats_ammo_produced                         = _stats select  0;
+    stats_ammo_spent                            = _stats select  1;
+    stats_blufor_soldiers_killed                = _stats select  2;
+    stats_blufor_soldiers_recruited             = _stats select  3;
+    stats_blufor_teamkills                      = _stats select  4;
+    stats_blufor_vehicles_built                 = _stats select  5;
+    stats_blufor_vehicles_killed                = _stats select  6;
+    stats_civilian_buildings_destroyed          = _stats select  7;
+    stats_civilian_vehicles_killed              = _stats select  8;
+    stats_civilian_vehicles_killed_by_players   = _stats select  9;
+    stats_civilian_vehicles_seized              = _stats select 10;
+    stats_civilians_healed                      = _stats select 11;
+    stats_civilians_killed                      = _stats select 12;
+    stats_civilians_killed_by_players           = _stats select 13;
+    stats_fobs_built                            = _stats select 14;
+    stats_fobs_lost                             = _stats select 15;
+    stats_fuel_produced                         = _stats select 16;
+    stats_fuel_spent                            = _stats select 17;
+    stats_hostile_battlegroups                  = _stats select 18;
+    stats_ieds_detonated                        = _stats select 19;
+    stats_opfor_killed_by_players               = _stats select 20;
+    stats_opfor_soldiers_killed                 = _stats select 21;
+    stats_opfor_vehicles_killed                 = _stats select 22;
+    stats_opfor_vehicles_killed_by_players      = _stats select 23;
+    stats_player_deaths                         = _stats select 24;
+    stats_playtime                              = _stats select 25;
+    stats_prisoners_captured                    = _stats select 26;
+    stats_readiness_earned                      = _stats select 27;
+    stats_reinforcements_called                 = _stats select 28;
+    stats_resistance_killed                     = _stats select 29;
+    stats_resistance_teamkills                  = _stats select 30;
+    stats_resistance_teamkills_by_players       = _stats select 31;
+    stats_secondary_objectives                  = _stats select 32;
+    stats_sectors_liberated                     = _stats select 33;
+    stats_sectors_lost                          = _stats select 34;
+    stats_spartan_respawns                      = _stats select 35;
+    stats_supplies_produced                     = _stats select 36;
+    stats_supplies_spent                        = _stats select 37;
+    stats_vehicles_recycled                     = _stats select 38;
 
     // Extract weigths from collection array
     infantry_weight = _weights select 0;
@@ -496,30 +448,14 @@ if (!isNil "_saveData") then {
     // Spawn BLUFOR AI groups
     // This will be removed if we reach a 0.96.7 due to more released Arma 3 DLCs until we finish 0.97.0
     private _grp = grpNull;
-    if (((_saveData select 0) select 0) isEqualType 0) then {
+    {
+        _x params ["_spawnPos", "_units"];
+        _grp = createGroup [GRLIB_side_friendly, true];
         {
-            _x params ["_spawnPos", "_units"];
-            _grp = createGroup [GRLIB_side_friendly, true];
-            {
-                [_x, [_spawnPos, _grp] select (_forEachIndex > 0), _grp] call KPLIB_fnc_createManagedUnit;
-            } forEach _units;
-        } forEach _aiGroups;
-    } else {
-        // Pre 0.96.5 compatibility
-        private _pos = [];
-        private _dir = 0;
-        private _unit = objNull;
-        {
-            _grp = createGroup [GRLIB_side_friendly, true];
-            {
-                _pos = [(_x select 1) select 0, (_x select 1) select 1, ((_x select 1) select 2) + 0.2];
-                _dir = _x select 2;
-                _unit = [(_x select 0), _pos, _grp] call KPLIB_fnc_createManagedUnit;
-                _unit setDir _dir;
-                _unit setPosATL _pos;
-            } forEach _x;
-        } forEach _aiGroups;
-    };
+            [_x, [_spawnPos, _grp] select (_forEachIndex > 0), _grp] call KPLIB_fnc_createManagedUnit;
+        } forEach _units;
+    } forEach _aiGroups;
+
     ["Saved AI units placed", "SAVE"] call KPLIB_fnc_log;
 
     // Spawn all saved sector crates
@@ -568,9 +504,37 @@ if ((_lockedVehCount < (count sectors_military)) && (_lockedVehCount < (count el
     ["Additional military sectors or unlockable vehicles detected and assigned", "SAVE"] call KPLIB_fnc_log;
 };
 
+// If any AA turrets have been saved, spawn them now
+if (count KPLIB_AA_used_positions > 0) then {
+	private ["_vehicle", "_spawn_marker", "_group", "_groupVehicles"];
+	KPLIB_AA_opfor_turrets = [];
+	diag_log formatText ["%1%2%3%4%5", time, "s  (save_manager) AA turret types: ", KPLIB_AA_opfor_turret_types, ", KPLIB_AA_used_positions: ", KPLIB_AA_used_positions];
+	{		
+		_spawn_marker = _x;
+		_turret = KPLIB_AA_opfor_turret_types # _forEachIndex;
+		diag_log formatText ["%1%2%3%4%5", time, "s  (save_manager) spawning AA turret: ", _turret, ", at spawn marker: ", _spawn_marker];
+		if (typeName _turret == "ARRAY") then {
+			_group = createGroup [GRLIB_side_enemy, true];
+			_groupVehicles = [];
+			{
+				_vehicle = [markerpos _spawn_marker, _x] call KPLIB_fnc_spawnVehicle;
+				_groupVehicles pushBack _vehicle;
+				[_vehicle] joinSilent _group;
+			} forEach _turret;
+			KPLIB_AA_opfor_turrets pushBack _groupVehicles;
+			_group setBehaviour "AWARE";
+		} else {
+			_vehicle = [markerpos _spawn_marker, _turret] call KPLIB_fnc_spawnVehicle;
+			KPLIB_AA_opfor_turrets pushBack _vehicle;
+			_vehicle setBehaviour "AWARE";
+		};
+	} forEach KPLIB_AA_used_positions;
+};
+
 publicVariable "GRLIB_vehicle_to_military_base_links";
 publicVariable "GRLIB_permissions";
-save_is_loaded = true; publicVariable "save_is_loaded";
+save_is_loaded = true;
+publicVariable "save_is_loaded";
 
 [format ["----- Saved data loaded - Time needed: %1 seconds", diag_tickTime - _start], "SAVE"] call KPLIB_fnc_log;
 

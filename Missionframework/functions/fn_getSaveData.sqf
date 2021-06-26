@@ -211,5 +211,7 @@ private _weights = [
     resources_intel,
     _allMines,
     _allCrates,
-    KPLIB_sectorTowers
+    KPLIB_sectorTowers,
+    KPLIB_AA_used_positions,
+    KPLIB_AA_opfor_turret_types
 ] // return

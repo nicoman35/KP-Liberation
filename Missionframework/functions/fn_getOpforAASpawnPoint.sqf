@@ -1,8 +1,8 @@
 /*
-    File: fn_getOpforSpawnPoint.sqf
-    Author: KP Liberation Dev Team - https://github.com/KillahPotatoes
+    File: fn_getOpforAASpawnPoint.sqf
+    Author: Nicoman
     Date: 2019-11-25
-    Last Update: 2020-04-17
+    Last Update: 2021-06-26
     License: MIT License - http://www.opensource.org/licenses/MIT
 
     Description:
@@ -15,8 +15,8 @@
         * If a position is given, the closest valid spawn point to that position is returned
 
     Parameter(s):
-        _min        - Minimum distance to any blufor sector or FOB                      [NUMBER, defaults to 2000]
-        _max        - Maximum distance to any blufor sector or FOB                      [NUMBER, defaults to 20000]
+        _min        - Minimum distance to any blufor sector or FOB                      [NUMBER, defaults to 1500]
+        _max        - Maximum distance to any blufor sector or FOB                      [NUMBER, defaults to 100000]
         _nearest    - Provide the nearest spawn point of valid points                   [BOOL, defaults to false]
         _pos        - Position if the nearest spawn point to this should be selected    [POSITION, defaults to [0, 0, 0]]
 
@@ -35,8 +35,8 @@ private _possibleSpawns = [];
 
 // Only check for opfor spawn points which aren't used already in the current session
 private _sectorsToCheck = sectors_opfor;
-if (!isNil "AA_used_positions") then {
-    _sectorsToCheck = sectors_opfor - AA_used_positions;
+if (!isNil "KPLIB_AA_used_positions") then {
+    _sectorsToCheck = sectors_opfor - KPLIB_AA_used_positions;
 };
 
 private ["_valid", "_current", "_distances"];

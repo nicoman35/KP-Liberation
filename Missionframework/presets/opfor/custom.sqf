@@ -3,7 +3,8 @@
     - None
 
     Optional Mods:
-    - None
+    - X66 Mammoth Tank
+    - Type 22 Manta UGV
 */
 
 // Enemy infantry classes
@@ -82,7 +83,8 @@ opfor_vehicles_low_intensity = [
     "O_MRAP_02_hmg_F",                                                  // Ifrit (HMG)
     "O_LSV_02_AT_F",                                                    // Qilin (AT)
     "O_APC_Wheeled_02_rcws_F",                                          // MSE-3 Marid
-    "O_APC_Tracked_02_cannon_F"                                         // BTR-K Kamysh
+    "O_APC_Tracked_02_cannon_F",                                        // BTR-K Kamysh
+    "CCS_Manta_Base"                                                    // Type 22 Manta UGV
 ];
 
 // All enemy vehicles that can spawn as battlegroups, either assaulting or as reinforcements, at high enemy combat readiness (aggression levels).
